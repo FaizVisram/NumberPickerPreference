@@ -13,3 +13,20 @@ NumberPickerPreference has the following parameters:
 * max - Integer. Maximum possible value. Default 10.
 * min - Integer. Minimum value. Default 0.
 * step - Integer. Step between values. Default 1.
+
+
+Example
+-------
+
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <com.faizvisram.android.preference.NumberPickerPreference
+            android:title="NumberPicker Example"
+            android:key="example_key"
+            bindSummary="true"
+            max="100"
+            min="0"
+            step="10" />
+
+    </PreferenceScreen>
+
