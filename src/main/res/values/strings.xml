@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NumberPickerPreference</string>
+
+    <!-- picker dialog defaults -->
+    <string name="dialog_title_default">Choose a value</string>
+    <string name="dialog_save_button_default">Save</string>
+    <string name="dialog_cancel_button_default">Cancel</string>
+</resources>
