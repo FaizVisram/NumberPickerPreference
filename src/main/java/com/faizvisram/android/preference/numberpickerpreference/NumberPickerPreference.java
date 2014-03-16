@@ -74,14 +74,6 @@ public class NumberPickerPreference extends Preference implements
             mTitle = getContext().getString(R.string.dialog_title_default);
         }
 
-        if (mMin < 0) {
-            throw new AssertionError("min value must be > 0");
-        }
-
-        if (mMax < 0) {
-            throw new AssertionError("max value must be > 0");
-        }
-
         if (mMax < mMin) {
             throw new AssertionError("max value must be > min value");
         }
