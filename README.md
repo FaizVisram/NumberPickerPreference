@@ -18,15 +18,16 @@ NumberPickerPreference has the following parameters:
 Example
 -------
 
-    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+``` xml
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <com.faizvisram.android.preference.NumberPickerPreference
-            android:title="NumberPicker Example"
-            android:key="example_key"
-            bindSummary="true"
-            max="100"
-            min="0"
-            step="10" />
+    <com.faizvisram.android.preference.NumberPickerPreference
+        android:title="NumberPicker Example"
+        android:key="example_key"
+        bindSummary="true"
+        max="100"
+        min="0"
+        step="10" />
 
-    </PreferenceScreen>
-
+</PreferenceScreen>
+```
