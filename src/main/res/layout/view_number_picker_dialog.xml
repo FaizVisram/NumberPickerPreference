@@ -14,14 +14,6 @@
         android:layout_gravity="center_horizontal"
         android:padding="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:id="@+id/txt_summary"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp"/>
-
         <NumberPicker
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +32,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_save"
             android:layout_gravity="center_horizontal"
-            android:text="@string/dialog_save_button_default" />
+            android:text="@string/dialog_save_button_text" />
     </LinearLayout>
 
 </LinearLayout>
