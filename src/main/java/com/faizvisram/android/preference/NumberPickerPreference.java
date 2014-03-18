@@ -1,4 +1,4 @@
-package com.faizvisram.android.preference.numberpickerpreference;
+package com.faizvisram.android.preference;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -9,10 +9,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.Preference;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+
+import com.faizvisram.android.preference.numberpickerpreference.R;
 
 /**
  * Created by Faiz Visram on 2014-03-11.
@@ -38,7 +41,6 @@ public class NumberPickerPreference extends Preference implements
     int mStep = DEFAULT_STEP;
     int mCurrentValue = mMin;
     String[] mValues;
-    String mCancelButtonText, mSaveButtonText;
 
     public NumberPickerPreference(Context context) {
         super(context);
@@ -73,12 +75,10 @@ public class NumberPickerPreference extends Preference implements
         if (mTitle == null) {
             mTitle = getContext().getString(R.string.dialog_title_default);
         }
-
         if (mMax < mMin) {
             throw new AssertionError("max value must be > min value");
         }
-
-        if (mStep < 0) {
+        if (mStep <= 0) {
             throw new AssertionError("step value must be > 0");
         }
 
@@ -93,6 +93,10 @@ public class NumberPickerPreference extends Preference implements
             // Set default state from the XML attribute
             mCurrentValue = (Integer) defaultValue;
             persistInt(mCurrentValue);
+        }
+        Log.e("NumberPickerPreference", "mCurrentValue: " + mCurrentValue);
+        if (mBindSummary) {
+            setSummary(Integer.toString(mCurrentValue));
         }
     }
 
@@ -133,14 +137,14 @@ public class NumberPickerPreference extends Preference implements
     @Override
     public boolean onPreferenceClick(Preference preference) {
         showDialog();
-        return false;
+        return true;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void showDialog() {
         if (mDialog == null) {
 
-            View view = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.dialog_number_picker, null);
+            View view = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_number_picker_dialog, null);
 
             // build NumberPicker
             mPicker = (NumberPicker) view.findViewById(R.id.number_picker);
@@ -160,8 +164,6 @@ public class NumberPickerPreference extends Preference implements
 
             // build save button
             Button saveButton = (Button) view.findViewById(R.id.btn_save);
-            saveButton.setText(mSaveButtonText == null ?
-                    getContext().getString(R.string.dialog_save_button_default) : mSaveButtonText);
             saveButton.setOnClickListener(this);
 
             // build dialog
@@ -169,8 +171,6 @@ public class NumberPickerPreference extends Preference implements
                     .setTitle(mTitle)
                     .setView(view)
                     .setCancelable(true)
-                    .setNegativeButton(mCancelButtonText, null)
-                    .setPositiveButton(mSaveButtonText, this)
                     .create();
 
             mDialog.setCanceledOnTouchOutside(true);
